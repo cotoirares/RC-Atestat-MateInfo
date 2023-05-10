@@ -35,13 +35,13 @@
         android:layout_marginBottom="20dp">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/numeFull"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:hint="Nume"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/numeFull"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:inputType="text"/>
@@ -50,13 +50,13 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/mail"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:hint="E-mail"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/mail"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:inputType="textEmailAddress"/>
@@ -64,21 +64,6 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/telefon"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:hint="Număr de telefon"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:inputType="number"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/parola"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:hint="Parola"
@@ -86,6 +71,22 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/parola"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:inputType="textPassword"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:hint="Confirmă parola"
+            app:passwordToggleEnabled="true"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/confirmaparola"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:inputType="textPassword"/>

@@ -14,4 +14,13 @@
         <!-- Customize your theme here. -->
         <item name="android:windowContentTransitions">true</item>
     </style>
+
+    <style name="Theme.Mateinfo_atestat.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Mateinfo_atestat.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.Mateinfo_atestat.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
