@@ -16,8 +16,8 @@ import org.w3c.dom.Text;
 
 public class Dashboard extends AppCompatActivity {
 
-    ImageView logofaq, logocontact, logodoc;
-    TextView textfaq, textcontact, textdoc;
+    ImageView logofaq, logocontact, logodoc, logoteste;
+    TextView textfaq, textcontact, textdoc, textteste;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +30,8 @@ public class Dashboard extends AppCompatActivity {
         textcontact = (TextView) findViewById(R.id.textView8);
         logodoc = (ImageView) findViewById(R.id.ic_documentatie);
         textdoc = (TextView) findViewById(R.id.textView7);
-
+        logoteste = (ImageView) findViewById(R.id.logoteste);
+        textteste = (TextView) findViewById(R.id.textView4);
         logofaq.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -74,6 +75,20 @@ public class Dashboard extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://docs.google.com")));
+            }
+        });
+        logoteste.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Dashboard.this, ExamLobby.class);
+                startActivity(intent);
+            }
+        });
+        textteste.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Dashboard.this, ExamLobby.class);
+                startActivity(intent);
             }
         });
     }
