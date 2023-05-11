@@ -7,11 +7,11 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.firebase.client.DataSnapshot;
@@ -22,53 +22,46 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-
-import java.io.File;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class ExamDefault extends AppCompatActivity {
+import java.io.File;
 
-    private TextView leftQ, leftTime;
+public class Practice extends AppCompatActivity {
+
+    private TextView nota;
     private ImageView intrebare;
-    private AppCompatButton variantaA, variantaB, variantaC, variantaD;
-    private int numarIntrebare = 0, intrebariParcurse = 0;
+    private AppCompatButton variantaA, variantaB, variantaC, variantaD, quit;
+    private int numarIntrebare = 0;
     private float notaDinamic = 1;
     private String raspCorect;
-    public boolean usedQuestions[]={false, false, false, false, false};
     private StorageReference storageReference;
     private Firebase grilaRef, variantaAref, variantaBref, variantaCref, variantaDref, raspCorectref;
-
+    public boolean usedQuestions[]={false, false, false, false, false};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_exam_default);
+        setContentView(R.layout.activity_practice);
         Firebase.setAndroidContext(this);
 
         intrebare = (ImageView)  findViewById(R.id.intrebare);
-        leftQ = (TextView) findViewById(R.id.leftQ);
-        leftTime = (TextView) findViewById(R.id.timeleft);
+
         variantaA = (AppCompatButton) findViewById(R.id.choice1);
         variantaB = (AppCompatButton) findViewById(R.id.choice2);
         variantaC = (AppCompatButton)  findViewById(R.id.choice3);
         variantaD = (AppCompatButton)  findViewById(R.id.choice4);
-        new CountDownTimer (10800000, 1000){
-            public void onTick(long milisUntilFinished){
-                leftTime.setText("Timp rămas: "+(milisUntilFinished/(1000*60*60))%24+" ore, "+(milisUntilFinished/60000)%60+"minute");
-            }
-            public void onFinish(){
-                sfarsitTest();
-            }
-        }.start();
+        quit = (AppCompatButton) findViewById(R.id.quit);
         updateQ();
         //Varianta A
         variantaA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (variantaA.getText().equals(raspCorect)) {
-                    notaDinamic += 0.375;
+                    Toast.makeText(Practice.this, "Raspuns Corect!", Toast.LENGTH_SHORT).show();
                     updateQ();
                 }
-                else updateQ();
+                else {
+                    Toast.makeText(Practice.this, "Raspuns Gresit. Încearcă din nou", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -77,10 +70,12 @@ public class ExamDefault extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (variantaB.getText().equals(raspCorect)) {
-                    notaDinamic += 0.375;
+                    Toast.makeText(Practice.this, "Raspuns Corect!", Toast.LENGTH_SHORT).show();
                     updateQ();
                 }
-                else updateQ();
+                else {
+                    Toast.makeText(Practice.this, "Raspuns Gresit. Încearcă din nou", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -89,10 +84,12 @@ public class ExamDefault extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (variantaC.getText().equals(raspCorect)) {
-                    notaDinamic += 0.375;
+                    Toast.makeText(Practice.this, "Raspuns Corect!", Toast.LENGTH_SHORT).show();
                     updateQ();
                 }
-                else updateQ();
+                else {
+                    Toast.makeText(Practice.this, "Raspuns Gresit. Încearcă din nou", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -101,27 +98,27 @@ public class ExamDefault extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (variantaD.getText().equals(raspCorect)) {
-                    notaDinamic += 0.375;
+                    Toast.makeText(Practice.this, "Raspuns Corect!", Toast.LENGTH_SHORT).show();
                     updateQ();
                 }
-                else updateQ();
+                else {
+                    Toast.makeText(Practice.this, "Raspuns Gresit. Încearcă din nou", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        quit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Practice.this, Dashboard.class);
+                startActivity(intent);
             }
         });
     }
 
     private void updateQ(){
-        leftQ.setText(""+ (24-intrebariParcurse));
         numarIntrebare = ThreadLocalRandom.current().nextInt(0, 5);
-        while (usedQuestions[numarIntrebare] != false) {
-            boolean ok = true;
-            for (int i=0;i<5;++i) {
-                if (usedQuestions[numarIntrebare] == false)
-                    ok = false;
-            }
-            if (ok == false)
-                numarIntrebare = ThreadLocalRandom.current().nextInt(0, 5);
-            else sfarsitTest();
-        }
+        while (usedQuestions[numarIntrebare] != false)
+            numarIntrebare = ThreadLocalRandom.current().nextInt(0, 5);
         usedQuestions[numarIntrebare] = true;
         grilaRef = new Firebase("https://mateinfo-atestat-default-rtdb.europe-west1.firebasedatabase.app/"+ numarIntrebare +"/enunt");
         grilaRef.addValueEventListener(new ValueEventListener() {
@@ -203,12 +200,5 @@ public class ExamDefault extends AppCompatActivity {
 
             }
         });
-        intrebariParcurse++;
-    }
-
-    private void sfarsitTest() {
-        Intent intent = new Intent(ExamDefault.this, SfarsitExamen.class);
-        intent.putExtra("nota", notaDinamic);
-        startActivity(intent);
     }
 }

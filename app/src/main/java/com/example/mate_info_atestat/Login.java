@@ -24,7 +24,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class Login extends AppCompatActivity {
     TextInputEditText emailInput, parolaInput;
-    Button notHaveAcc, log;
+    Button notHaveAcc, log, fpas;
     String EmailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     ProgressDialog progressDialog;
     FirebaseAuth mAuth;
@@ -39,6 +39,7 @@ public class Login extends AppCompatActivity {
         notHaveAcc = (Button) findViewById(R.id.acc);
         emailInput = (TextInputEditText) findViewById(R.id.email);
         parolaInput = (TextInputEditText) findViewById(R.id.parola);
+        fpas = (Button) findViewById(R.id.forgotPassword);
         progressDialog = new ProgressDialog(this);
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
@@ -53,6 +54,13 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 performLogin();
+            }
+        });
+        fpas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Login.this, Dashboard.class);
+                startActivity(intent);
             }
         });
     }
