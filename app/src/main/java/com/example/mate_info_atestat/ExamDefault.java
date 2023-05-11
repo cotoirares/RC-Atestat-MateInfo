@@ -6,6 +6,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -27,10 +28,10 @@ public class ExamDefault extends AppCompatActivity {
     private TextView nota;
     private ImageView intrebare;
     private AppCompatButton variantaA, variantaB, variantaC, variantaD;
-    private int notaDinamic;
+    private int numarIntrebare = 0;
+    private float notaDinamic = 1;
     private String raspCorect;
     private StorageReference storageReference;
-
     private Firebase grilaRef, variantaAref, variantaBref, variantaCref, variantaDref, raspCorectref;
 
     @Override
@@ -48,9 +49,63 @@ public class ExamDefault extends AppCompatActivity {
         variantaD = (AppCompatButton)  findViewById(R.id.choice4);
 
         updateQ();
+        //Varianta A
+        variantaA.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (variantaA.getText().equals(raspCorect)) {
+                    notaDinamic += 0.375;
+                    updateNota(notaDinamic);
+                    updateQ();
+                }
+                else updateQ();
+            }
+        });
+
+        //Varianta B
+        variantaB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (variantaB.getText().equals(raspCorect)) {
+                    notaDinamic += 0.375;
+                    updateNota(notaDinamic);
+                    updateQ();
+                }
+                else updateQ();
+            }
+        });
+
+        //Varianta C
+        variantaC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (variantaC.getText().equals(raspCorect)) {
+                    notaDinamic += 0.375;
+                    updateNota(notaDinamic);
+                    updateQ();
+                }
+                else updateQ();
+            }
+        });
+
+        //Varianta D
+        variantaD.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (variantaD.getText().equals(raspCorect)) {
+                    notaDinamic += 0.375;
+                    updateNota(notaDinamic);
+                    updateQ();
+                }
+                else updateQ();
+            }
+        });
     }
-    public void updateQ(){
-        grilaRef = new Firebase("https://mateinfo-atestat-default-rtdb.europe-west1.firebasedatabase.app/0/enunt");
+    private void updateNota(float notaDinamic){
+        nota.setText("" + notaDinamic);
+    }
+    private void updateQ(){
+        grilaRef = new Firebase("https://mateinfo-atestat-default-rtdb.europe-west1.firebasedatabase.app/"+ numarIntrebare +"/enunt");
         grilaRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -66,7 +121,7 @@ public class ExamDefault extends AppCompatActivity {
             public void onCancelled(FirebaseError firebaseError) {
             }
         });
-        variantaAref = new Firebase("https://mateinfo-atestat-default-rtdb.europe-west1.firebasedatabase.app/0/a");
+        variantaAref = new Firebase("https://mateinfo-atestat-default-rtdb.europe-west1.firebasedatabase.app/"+ numarIntrebare +"/a");
         variantaAref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -79,7 +134,7 @@ public class ExamDefault extends AppCompatActivity {
             }
         });
 
-        variantaBref = new Firebase("https://mateinfo-atestat-default-rtdb.europe-west1.firebasedatabase.app/0/b");
+        variantaBref = new Firebase("https://mateinfo-atestat-default-rtdb.europe-west1.firebasedatabase.app/"+ numarIntrebare +"/b");
         variantaBref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -92,7 +147,7 @@ public class ExamDefault extends AppCompatActivity {
             }
         });
 
-        variantaCref = new Firebase("https://mateinfo-atestat-default-rtdb.europe-west1.firebasedatabase.app/0/c");
+        variantaCref = new Firebase("https://mateinfo-atestat-default-rtdb.europe-west1.firebasedatabase.app/"+ numarIntrebare +"/c");
         variantaCref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -105,7 +160,7 @@ public class ExamDefault extends AppCompatActivity {
             }
         });
 
-        variantaDref = new Firebase("https://mateinfo-atestat-default-rtdb.europe-west1.firebasedatabase.app/0/d");
+        variantaDref = new Firebase("https://mateinfo-atestat-default-rtdb.europe-west1.firebasedatabase.app/"+ numarIntrebare +"/d");
         variantaDref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -117,5 +172,19 @@ public class ExamDefault extends AppCompatActivity {
             public void onCancelled(FirebaseError firebaseError) {
             }
         });
+        raspCorectref = new Firebase("https://mateinfo-atestat-default-rtdb.europe-west1.firebasedatabase.app/"+ numarIntrebare +"/corect");
+        raspCorectref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                raspCorect = dataSnapshot.getValue(String.class);
+
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+        numarIntrebare++;
     }
 }
