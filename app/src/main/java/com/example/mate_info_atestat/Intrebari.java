@@ -7,6 +7,7 @@ import com.google.firebase.ktx.Firebase;
 public class Intrebari extends Application {
     @Override
     public void onCreate(){
+
         super.onCreate();
     }
 }

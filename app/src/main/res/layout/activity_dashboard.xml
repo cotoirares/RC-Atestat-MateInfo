@@ -173,38 +173,6 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:id="@+id/logosetari"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="15dp"
-                    app:srcCompat="@drawable/message_question" />
-
-                <TextView
-                    android:id="@+id/textView6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/logosetari"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/baloo_bhai_2_bold"
-                    android:text="Întrebări frecvente"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
-            </RelativeLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp"
-            android:layout_weight="1">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
                     android:id="@+id/ic_documentatie"
                     android:layout_width="75dp"
                     android:layout_height="75dp"

@@ -35,6 +35,7 @@ public class Dashboard extends AppCompatActivity {
         logoantrenament = (ImageView) findViewById(R.id.ic_antrenament);
         textantrenament = (TextView) findViewById(R.id.textView5);
 
+
         logofaq.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,14 +71,14 @@ public class Dashboard extends AppCompatActivity {
         logodoc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://docs.google.com")));
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.flipsnack.com/AE76A577C6F/atestat-rare-cotoi-aplica-ia-mate-info.html")));
             }
         });
 
         textdoc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://docs.google.com")));
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.flipsnack.com/AE76A577C6F/atestat-rare-cotoi-aplica-ia-mate-info.html")));
             }
         });
         logoteste.setOnClickListener(new View.OnClickListener() {
