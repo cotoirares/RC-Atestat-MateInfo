@@ -116,9 +116,9 @@ public class Practice extends AppCompatActivity {
     }
 
     private void updateQ(){
-        numarIntrebare = ThreadLocalRandom.current().nextInt(0, 5);
+        numarIntrebare = ThreadLocalRandom.current().nextInt(0, 7);
         while (usedQuestions[numarIntrebare] != false)
-            numarIntrebare = ThreadLocalRandom.current().nextInt(0, 5);
+            numarIntrebare = ThreadLocalRandom.current().nextInt(0, 7);
         usedQuestions[numarIntrebare] = true;
         grilaRef = new Firebase("https://mateinfo-atestat-default-rtdb.europe-west1.firebasedatabase.app/"+ numarIntrebare +"/enunt");
         grilaRef.addValueEventListener(new ValueEventListener() {

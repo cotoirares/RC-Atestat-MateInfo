@@ -24,8 +24,6 @@ public class Dashboard extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_dashboard);
 
-        logofaq = (ImageView) findViewById(R.id.logosetari);
-        textfaq = (TextView) findViewById(R.id.textView6);
         logocontact = (ImageView) findViewById(R.id.ic_support);
         textcontact = (TextView) findViewById(R.id.textView8);
         logodoc = (ImageView) findViewById(R.id.ic_documentatie);
@@ -35,22 +33,6 @@ public class Dashboard extends AppCompatActivity {
         logoantrenament = (ImageView) findViewById(R.id.ic_antrenament);
         textantrenament = (TextView) findViewById(R.id.textView5);
 
-
-        logofaq.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Dashboard.this, Faq.class);
-                startActivity(intent);
-            }
-        });
-
-        textfaq.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Dashboard.this, Faq.class);
-                startActivity(intent);
-            }
-        });
 
         logocontact.setOnClickListener(new View.OnClickListener() {
             @Override

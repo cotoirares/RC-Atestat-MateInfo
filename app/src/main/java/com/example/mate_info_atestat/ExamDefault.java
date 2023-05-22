@@ -111,10 +111,10 @@ public class ExamDefault extends AppCompatActivity {
 
     private void updateQ(){
         leftQ.setText(""+ (24-intrebariParcurse));
-        numarIntrebare = ThreadLocalRandom.current().nextInt(0, 5);
+        numarIntrebare = ThreadLocalRandom.current().nextInt(0, 7);
         while (usedQuestions[numarIntrebare] != false) {
             boolean ok = true;
-            for (int i=0;i<5;++i) {
+            for (int i=0;i<7;++i) {
                 if (usedQuestions[numarIntrebare] == false)
                     ok = false;
             }
